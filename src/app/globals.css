@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------
+   Theme tokens. Values are "R G B" so Tailwind opacity modifiers work.
+   Switching data-theme on <html> recolors the whole site.
+------------------------------------------------------------------- */
+:root,
+[data-theme="cyan"] {
+  --base: 5 11 20;
+  --accent: 34 211 238;
+  --accent-soft: 103 232 249;
+  --accent-deep: 14 116 144;
+}
+[data-theme="violet"] {
+  --base: 10 7 22;
+  --accent: 167 139 250;
+  --accent-soft: 196 181 253;
+  --accent-deep: 109 40 217;
+}
+[data-theme="emerald"] {
+  --base: 4 14 12;
+  --accent: 52 211 153;
+  --accent-soft: 110 231 183;
+  --accent-deep: 4 120 87;
+}
+[data-theme="amber"] {
+  --base: 16 10 5;
+  --accent: 251 191 36;
+  --accent-soft: 252 211 77;
+  --accent-deep: 180 83 9;
+}
+[data-theme="rose"] {
+  --base: 18 7 12;
+  --accent: 251 113 133;
+  --accent-soft: 253 164 175;
+  --accent-deep: 190 18 60;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  @apply bg-base font-sans text-slate-200 antialiased;
+  transition: background-color 0.6s ease;
+}
+
+::selection {
+  background: rgb(var(--accent) / 0.35);
+}
+
+@layer components {
+  /* Glassmorphism surface: the core visual language of the site */
+  .glass {
+    @apply rounded-2xl border border-white/10 bg-white/[0.05] backdrop-blur-xl;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  }
+  .glass-hover {
+    @apply cursor-pointer transition duration-300 hover:border-accent/50 hover:shadow-glow;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-accent/60 bg-accent/10 px-5 py-2.5 text-sm font-semibold text-accent-soft transition duration-300 hover:bg-accent/20 hover:shadow-glow focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-slate-200 transition duration-300 hover:border-white/30 hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent;
+  }
+  .tag {
+    @apply rounded-full border border-accent/25 bg-accent/10 px-3 py-1 text-xs font-medium text-accent-soft;
+  }
+  .focus-ring {
+    @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent;
+  }
+
+  /* 3D flip card (certificates) */
+  .flip-scene { perspective: 1200px; }
+  .flip-inner {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .flip-inner[data-flipped="true"] { transform: rotateY(180deg); }
+  .flip-face {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  .flip-back { transform: rotateY(180deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-float, .animate-spin-slow, .animate-marquee { animation: none !important; }
+  .flip-inner { transition-duration: 0.01s; }
+}
