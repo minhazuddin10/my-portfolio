@@ -20,9 +20,9 @@ function Row({ items, reverse = false, duration }: { items: string[]; reverse?: 
             <li
               key={`${name}-${i}`}
               aria-hidden={i >= items.length}
-              className="glass mr-4 flex shrink-0 items-center gap-3 !rounded-xl px-5 py-3 text-sm font-medium text-slate-200"
+              className="glass mr-4 flex shrink-0 items-center gap-2.5 !rounded-xl px-4 py-2.5 text-xs font-medium sm:gap-3 sm:px-5 sm:py-3 sm:text-sm text-slate-200"
             >
-              <Icon className="text-2xl" style={{ color }} aria-hidden />
+              <Icon className="text-xl sm:text-2xl" style={{ color }} aria-hidden />
               {name}
             </li>
           );

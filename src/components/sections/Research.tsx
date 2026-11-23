@@ -96,7 +96,7 @@ export default function Research() {
                 <li key={s} className="tag">{s}</li>
               ))}
             </ul>
-            <h3 className="mt-4 font-display text-xl font-semibold leading-snug text-white sm:text-2xl">{research.title}</h3>
+            <h3 className="mt-4 break-words font-display text-xl font-semibold leading-snug text-white sm:text-2xl">{research.title}</h3>
             <p className="mt-3 text-sm text-accent-soft">{research.venue}</p>
             <p className="mt-3 leading-relaxed text-slate-400">{research.summary}</p>
             <p className="mt-5 text-sm font-medium text-accent-soft">Click for the full story, team and photos</p>

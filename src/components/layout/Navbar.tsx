@@ -19,7 +19,7 @@ export default function Navbar({ items }: { items: NavItem[] }) {
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-4 sm:pt-4">
       <nav className="glass relative mx-auto flex max-w-6xl items-center justify-between gap-3 overflow-hidden px-4 py-3 sm:px-5">
-        <a href="#top" className="focus-ring shrink-0 font-display text-lg font-bold text-accent-soft">
+        <a href="#top" className="focus-ring shrink-0 font-display text-base font-bold text-accent-soft sm:text-lg">
           {profile.name}
         </a>
 
@@ -38,7 +38,7 @@ export default function Navbar({ items }: { items: NavItem[] }) {
           ))}
         </ul>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4">
           <ThemeSwitcher />
           <button
             className="focus-ring text-2xl text-slate-200 xl:hidden"
@@ -64,7 +64,7 @@ export default function Navbar({ items }: { items: NavItem[] }) {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            className="glass mx-auto mt-2 grid max-w-6xl grid-cols-2 gap-1 p-3 sm:grid-cols-3 xl:hidden"
+            className="glass mx-auto mt-2 grid max-h-[70vh] max-w-6xl grid-cols-2 gap-1 overflow-y-auto p-3 sm:grid-cols-3 xl:hidden"
           >
             {items.map((item) => (
               <li key={item.id}>

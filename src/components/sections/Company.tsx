@@ -13,7 +13,7 @@ export default function Company() {
           target="_blank"
           rel="noreferrer"
           aria-label={`Visit ${company.name} website`}
-          className="glass glass-hover focus-ring group relative flex flex-col gap-6 overflow-hidden p-8 sm:flex-row sm:items-center sm:p-10"
+          className="glass glass-hover focus-ring group relative flex flex-col gap-6 overflow-hidden p-6 sm:flex-row sm:items-center sm:p-10"
         >
           <div aria-hidden className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-accent/20 blur-3xl transition duration-700 group-hover:scale-150" />
           <div className="relative flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl border border-accent/40 bg-accent/10 font-display text-3xl font-bold text-accent-soft shadow-glow">
@@ -24,7 +24,7 @@ export default function Company() {
             <h3 className="font-display text-3xl font-bold text-white">{company.name}</h3>
             <p className="mt-2 max-w-xl text-slate-400">{company.description}</p>
           </div>
-          <span className="btn-primary relative">
+          <span className="btn-primary relative w-full sm:w-auto">
             Visit neutrinobyte.com <FaExternalLinkAlt className="text-xs" />
           </span>
         </a>

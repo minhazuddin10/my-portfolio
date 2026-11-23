@@ -40,7 +40,7 @@ export default function Modal({ title, onClose, children, size = "md" }: ModalPr
         role="dialog"
         aria-modal="true"
         aria-label={title}
-        className={`glass relative max-h-[92vh] w-full overflow-y-auto !rounded-b-none !bg-slate-950/90 p-6 sm:!rounded-2xl sm:p-8 ${
+        className={`glass relative max-h-[92vh] w-full overflow-y-auto !rounded-b-none !bg-slate-950/90 overscroll-contain p-5 sm:!rounded-2xl sm:p-8 ${
           size === "lg" ? "max-w-4xl" : "max-w-2xl"
         }`}
         initial={{ opacity: 0, y: 50, scale: 0.97 }}

@@ -16,8 +16,8 @@ export default function About() {
     <Section id="about" title="About me">
       <div className="grid gap-6 lg:grid-cols-[1.5fr_1fr]">
         <Reveal from="left">
-          <TiltCard onClick={() => setOpen(true)} label="Open details about me" className="grid gap-6 p-6 sm:grid-cols-[180px_1fr]">
-            <SmartImage src={profile.aboutImage} alt={profile.name} className="aspect-square w-full rounded-2xl bg-gradient-to-br from-accent-deep/40 to-slate-900 object-cover object-top" />
+          <TiltCard onClick={() => setOpen(true)} label="Open details about me" className="grid gap-5 p-5 sm:grid-cols-[180px_1fr] sm:gap-6 sm:p-6">
+            <SmartImage src={profile.aboutImage} alt={profile.name} className="mx-auto aspect-square w-full max-w-[200px] rounded-2xl sm:max-w-none bg-gradient-to-br from-accent-deep/40 to-slate-900 object-cover object-top" />
             <div className="space-y-3 leading-relaxed text-slate-300">
               {about.map((p) => (
                 <p key={p}>{p}</p>

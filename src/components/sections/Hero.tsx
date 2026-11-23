@@ -9,9 +9,9 @@ import OrbitRing from "@/components/ui/OrbitRing";
 
 /** Floating glass chips around the photo; each links to a section. */
 const chips = [
-  { label: "Founder · NeutrinoByte", href: "#company", pos: "left-[-4%] top-[12%]", delay: 0 },
-  { label: "Research · iCONEECT 2026", href: "#research", pos: "right-[-6%] top-[38%]", delay: 0.8 },
-  { label: "React.js · DevOps learner", href: "#skills", pos: "left-[-2%] bottom-[14%]", delay: 1.6 },
+  { label: "Founder · NeutrinoByte", href: "#company", pos: "left-0 top-[8%]", delay: 0 },
+  { label: "Research · iCONEECT 2026", href: "#research", pos: "right-0 top-[40%]", delay: 0.8 },
+  { label: "React.js · DevOps learner", href: "#skills", pos: "left-0 bottom-[10%]", delay: 1.6 },
 ];
 
 export default function Hero() {
@@ -39,11 +39,11 @@ export default function Hero() {
   };
 
   return (
-    <section id="top" className="mx-auto flex min-h-screen w-full max-w-6xl items-center px-5 pb-16 pt-28 sm:px-8">
-      <div className="grid w-full items-center gap-14 lg:grid-cols-[1.1fr_1fr]">
+    <section id="top" className="mx-auto flex min-h-[100svh] w-full max-w-6xl items-center px-4 pb-12 pt-24 sm:px-8 sm:pb-16 sm:pt-28">
+      <div className="grid w-full items-center gap-10 lg:gap-14 lg:grid-cols-[1.1fr_1fr]">
         {/* Text */}
         <motion.div
-          className="glass p-7 sm:p-10"
+          className="glass p-6 sm:p-10"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -86,7 +86,7 @@ export default function Hero() {
 
         {/* Photo with neutrino orbits */}
         <motion.div
-          className="relative mx-auto aspect-square w-[min(88vw,500px)]"
+          className="relative mx-auto aspect-square w-[min(86vw,560px)]"
           style={{ perspective: 1100 }}
           onMouseMove={onMove}
           onMouseLeave={onLeave}
@@ -94,26 +94,38 @@ export default function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.9, delay: 0.2 }}
         >
-          <div aria-hidden className="absolute inset-[18%] rounded-full bg-accent/25 blur-3xl" />
+          <div aria-hidden className="absolute inset-[16%] rounded-full bg-accent/25 blur-3xl" />
 
-          <OrbitRing scale={100} tilt={72} rotate={-20} duration={16} />
-          <OrbitRing scale={82} tilt={72} rotate={35} duration={22} reverse />
+          {/* Orbits: a flat dashed ring that spins in place + tilted rings with orbiting neutrinos */}
+          <OrbitRing scale={96} tilt={0} duration={50} dashed />
+          <OrbitRing scale={100} tilt={64} rotate={-25} duration={14} />
+          <OrbitRing scale={88} tilt={64} rotate={40} duration={20} reverse />
 
-          <motion.div
-            className="absolute left-1/2 top-1/2 aspect-[4/5] w-[56%] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-t-[999px] rounded-b-3xl border border-accent/40 bg-black shadow-glow"
-            style={{ rotateX, rotateY, transformPerspective: 1100 }}
-          >
-            <SmartImage src={profile.heroImage} alt={profile.name} eager className="h-full w-full object-cover object-top" />
-            <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/70 to-transparent" />
-          </motion.div>
+          {/* Centering is done by this flex wrapper, NOT by translate classes:
+              framer-motion's rotateX/rotateY would override a CSS translate. */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <motion.div
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="w-[62%]"
+            >
+              <motion.div
+                className="relative aspect-[4/5] w-full overflow-hidden rounded-t-[999px] rounded-b-3xl border border-accent/40 bg-black shadow-glow"
+                style={{ rotateX, rotateY, transformPerspective: 1100 }}
+              >
+                <SmartImage src={profile.heroImage} alt={profile.name} eager className="h-full w-full object-cover object-top" />
+                <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/70 to-transparent" />
+              </motion.div>
+            </motion.div>
+          </div>
 
-          <OrbitRing scale={64} tilt={72} rotate={-60} duration={11} />
+          <OrbitRing scale={72} tilt={70} rotate={-60} duration={10} />
 
           {chips.map((chip) => (
             <motion.a
               key={chip.label}
               href={chip.href}
-              className={`glass focus-ring absolute whitespace-nowrap px-3.5 py-2 text-xs font-medium text-slate-100 transition hover:border-accent/60 hover:text-accent-soft sm:text-sm ${chip.pos}`}
+              className={`glass focus-ring absolute hidden whitespace-nowrap sm:block px-3 py-1.5 text-xs font-medium text-slate-100 transition hover:border-accent/60 hover:text-accent-soft sm:px-3.5 sm:py-2 sm:text-sm ${chip.pos}`}
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: chip.delay }}
             >
@@ -122,8 +134,8 @@ export default function Hero() {
           ))}
 
           {/* Decorative drifting glass shapes */}
-          <span aria-hidden className="animate-float absolute right-[8%] top-[6%] h-9 w-9 rotate-45 rounded-lg border border-accent/40 bg-accent/10 backdrop-blur-sm" style={{ ["--r" as string]: "45deg" }} />
-          <span aria-hidden className="animate-float absolute bottom-[8%] right-[14%] h-6 w-6 rounded-md border border-accent/40 bg-accent/10 backdrop-blur-sm" style={{ ["--r" as string]: "20deg", animationDelay: "1.5s" }} />
+          <span aria-hidden className="animate-float absolute right-[6%] top-[8%] h-8 w-8 rotate-45 rounded-lg border border-accent/40 bg-accent/10 backdrop-blur-sm sm:h-9 sm:w-9" style={{ ["--r" as string]: "45deg" }} />
+          <span aria-hidden className="animate-float absolute bottom-[8%] right-[10%] h-5 w-5 rounded-md border border-accent/40 bg-accent/10 backdrop-blur-sm sm:h-6 sm:w-6" style={{ ["--r" as string]: "20deg", animationDelay: "1.5s" }} />
         </motion.div>
       </div>
     </section>

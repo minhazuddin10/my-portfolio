@@ -33,7 +33,7 @@ function FlipCard({ cert, onView }: FlipCardProps) {
           toggle();
         }
       }}
-      className="flip-scene focus-ring aspect-[4/3] cursor-pointer rounded-2xl"
+      className="flip-scene focus-ring aspect-[4/3] min-h-[18rem] cursor-pointer rounded-2xl"
     >
       <div className="flip-inner h-full w-full" data-flipped={flipped}>
         {/* Front */}

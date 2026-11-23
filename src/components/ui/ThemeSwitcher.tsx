@@ -7,7 +7,7 @@ import { useTheme } from "@/components/providers/ThemeProvider";
 export default function ThemeSwitcher() {
   const { theme, setTheme } = useTheme();
   return (
-    <div role="radiogroup" aria-label="Website color" className="flex items-center gap-1.5">
+    <div role="radiogroup" aria-label="Website color" className="flex items-center gap-1 sm:gap-1.5">
       {themes.map((t) => (
         <button
           key={t.id}
@@ -16,7 +16,7 @@ export default function ThemeSwitcher() {
           aria-label={`${t.label} theme`}
           title={t.label}
           onClick={() => setTheme(t.id)}
-          className={`focus-ring h-5 w-5 rounded-full border-2 transition hover:scale-110 ${
+          className={`focus-ring h-4 w-4 rounded-full sm:h-5 sm:w-5 border-2 transition hover:scale-110 ${
             theme === t.id ? "scale-110 border-white" : "border-white/20"
           }`}
           style={{ backgroundColor: t.hex }}
