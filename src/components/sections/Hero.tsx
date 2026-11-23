@@ -39,7 +39,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="top" className="mx-auto flex min-h-[100svh] w-full max-w-6xl items-center px-4 pb-12 pt-24 sm:px-8 sm:pb-16 sm:pt-28">
+    <section id="top" className="mx-auto flex min-h-[100svh] overflow-x-clip w-full max-w-6xl items-center px-4 pb-12 pt-24 sm:px-8 sm:pb-16 sm:pt-28">
       <div className="grid w-full items-center gap-10 lg:gap-14 lg:grid-cols-[1.1fr_1fr]">
         {/* Text */}
         <motion.div
@@ -97,9 +97,9 @@ export default function Hero() {
           <div aria-hidden className="absolute inset-[16%] rounded-full bg-accent/25 blur-3xl" />
 
           {/* Orbits: a flat dashed ring that spins in place + tilted rings with orbiting neutrinos */}
-          <OrbitRing scale={96} tilt={0} duration={50} dashed />
-          <OrbitRing scale={100} tilt={64} rotate={-25} duration={14} />
-          <OrbitRing scale={88} tilt={64} rotate={40} duration={20} reverse />
+          <OrbitRing scale={94} tilt={0} duration={50} dashed />
+          <OrbitRing scale={90} tilt={60} rotate={-25} duration={14} />
+          <OrbitRing scale={80} tilt={60} rotate={40} duration={20} reverse />
 
           {/* Centering is done by this flex wrapper, NOT by translate classes:
               framer-motion's rotateX/rotateY would override a CSS translate. */}
@@ -119,7 +119,7 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          <OrbitRing scale={72} tilt={70} rotate={-60} duration={10} />
+          <OrbitRing scale={70} tilt={62} rotate={-60} duration={10} />
 
           {chips.map((chip) => (
             <motion.a

@@ -10,7 +10,7 @@ interface SectionProps {
 /** Shared wrapper: anchor id, spacing and heading for every section. */
 export default function Section({ id, title, subtitle, children }: SectionProps) {
   return (
-    <section id={id} className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-8 sm:py-20">
+    <section id={id} className="mx-auto w-full max-w-6xl overflow-x-clip px-4 py-14 sm:px-8 sm:py-20">
       <Reveal from="left">
         <div className="flex items-center gap-4">
           <span className="h-10 w-1.5 rounded-full bg-accent shadow-glow" aria-hidden />
