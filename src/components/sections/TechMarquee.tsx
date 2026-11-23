@@ -2,7 +2,7 @@ import { skillIcons } from "@/components/ui/skillIcons";
 
 /** Two rows of tech chips sliding in opposite directions. Pauses on hover. */
 const rowOne = ["React.js", "HTML", "CSS", "JavaScript", "Docker", "Git", "GitHub", "Linux", "AWS", "Kubernetes", "Python", "Microsoft Excel"];
-const rowTwo = ["Docker", "Kubernetes", "AWS", "Linux", "Git", "GitHub", "Python", "React.js", "JavaScript", "CSS", "HTML", "Microsoft Excel"];
+const rowTwo = ["Docker", "Kubernetes", "AWS", "Linux", "Git", "GitHub", "Python", "React.js", "JavaScript", "CSS", "HTML", "Microsoft Excel",];
 
 function Row({ items, reverse = false, duration }: { items: string[]; reverse?: boolean; duration: number }) {
   const loop = [...items, ...items]; // duplicated so the loop is seamless

@@ -14,7 +14,7 @@ export const profile = {
   headline: "Front-End Developer | Aspiring DevOps Engineer",
   location: "Bangladesh",
   openToWork: true,
-  email: "your-email@example.com", // TODO: replace with your real email
+  email: "minhazuddinrafi11@gmail.com", // TODO: replace with your real email
   linkedin: "https://www.linkedin.com/in/minhaz-uddin-rafi/",
   github: "https://github.com/minhazuddin10",
   resumeUrl: "/Minhaz_Uddin_CV.pdf", // put the file in /public
