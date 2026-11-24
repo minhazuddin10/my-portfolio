@@ -1,26 +1,20 @@
 import { skillIcons } from "@/components/ui/skillIcons";
 
-/** Two rows of tech chips sliding in opposite directions. Pauses on hover. */
-const rowOne = ["React.js", "HTML", "CSS", "JavaScript", "Docker", "Git", "GitHub", "Linux", "AWS", "Kubernetes", "Python", "Microsoft Excel"];
-const rowTwo = ["Docker", "Kubernetes", "AWS", "Linux", "Git", "GitHub", "Python", "React.js", "JavaScript", "CSS", "HTML", "Microsoft Excel",];
+/** Static row of the technologies I work with (no scrolling animation). */
+const techs = ["React.js", "HTML", "CSS", "JavaScript", "Docker", "Git", "GitHub", "Linux", "AWS", "Kubernetes", "Python", "Microsoft Excel"];
 
-function Row({ items, reverse = false, duration }: { items: string[]; reverse?: boolean; duration: number }) {
-  const loop = [...items, ...items]; // duplicated so the loop is seamless
+export default function TechMarquee() {
   return (
-    <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-      <ul
-        className="animate-marquee flex w-max py-2 hover:[animation-play-state:paused]"
-        style={{ ["--dur" as string]: `${duration}s`, animationDirection: reverse ? "reverse" : "normal" }}
-      >
-        {loop.map((name, i) => {
+    <section aria-label="Technologies I work with" className="mx-auto max-w-6xl px-4 py-6 sm:px-8">
+      <ul className="flex flex-wrap justify-center gap-3">
+        {techs.map((name) => {
           const entry = skillIcons[name];
-          if (!entry?.Icon) return null; // skip unknown skills instead of crashing
+          if (!entry?.Icon) return null;
           const { Icon, color } = entry;
           return (
             <li
-              key={`${name}-${i}`}
-              aria-hidden={i >= items.length}
-              className="glass mr-4 flex shrink-0 items-center gap-2.5 !rounded-xl px-4 py-2.5 text-xs font-medium sm:gap-3 sm:px-5 sm:py-3 sm:text-sm text-slate-200"
+              key={name}
+              className="flex items-center gap-2.5 rounded-xl border border-white/10 bg-slate-900/70 px-4 py-2.5 text-xs font-medium text-slate-200 sm:text-sm"
             >
               <Icon className="text-xl sm:text-2xl" style={{ color }} aria-hidden />
               {name}
@@ -28,15 +22,6 @@ function Row({ items, reverse = false, duration }: { items: string[]; reverse?: 
           );
         })}
       </ul>
-    </div>
-  );
-}
-
-export default function TechMarquee() {
-  return (
-    <section aria-label="Technologies I work with" className="space-y-2 py-6">
-      <Row items={rowOne} duration={38} />
-      <Row items={rowTwo} duration={44} reverse />
     </section>
   );
 }

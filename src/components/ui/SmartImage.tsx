@@ -41,6 +41,6 @@ export default function SmartImage({ src, alt, className = "", label = "Photo co
 
   return (
     // eslint-disable-next-line @next/next/no-img-element
-    <img ref={ref} src={src} alt={alt} loading={eager ? "eager" : "lazy"} onError={() => setFailed(true)} className={className} />
+    <img ref={ref} src={src} alt={alt} loading={eager ? "eager" : "lazy"} decoding="async" onError={() => setFailed(true)} className={className} />
   );
 }

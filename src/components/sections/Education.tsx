@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
 import { education } from "@/data/portfolio";
 import type { Education as EducationItem } from "@/types";
 import Section from "@/components/ui/Section";
@@ -27,14 +26,14 @@ export default function Education() {
         ))}
       </div>
 
-      <AnimatePresence>
+      
         {selected && (
           <DetailModal
             onClose={() => setSelected(null)}
             detail={{ title: selected.institution, subtitle: selected.degree, meta: selected.period, paragraphs: selected.details }}
           />
         )}
-      </AnimatePresence>
+      
     </Section>
   );
 }

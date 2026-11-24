@@ -15,7 +15,7 @@ export default function Company() {
           aria-label={`Visit ${company.name} website`}
           className="glass glass-hover focus-ring group relative flex flex-col gap-6 overflow-hidden p-6 sm:flex-row sm:items-center sm:p-10"
         >
-          <div aria-hidden className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-accent/20 blur-3xl transition duration-700 group-hover:scale-150" />
+          <div aria-hidden className="absolute -right-16 -top-16 h-56 w-56 glow-orb rounded-full transition duration-700 group-hover:scale-150" />
           <div className="relative flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl border border-accent/40 bg-accent/10 font-display text-3xl font-bold text-accent-soft shadow-glow">
             NB
           </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
 import { FaLinkedin } from "react-icons/fa";
 import { research } from "@/data/portfolio";
 import Section from "@/components/ui/Section";
@@ -104,7 +103,7 @@ export default function Research() {
         </TiltCard>
       </Reveal>
 
-      <AnimatePresence>{open && <ResearchDetails onClose={() => setOpen(false)} />}</AnimatePresence>
+      {open && <ResearchDetails onClose={() => setOpen(false)} />}
     </Section>
   );
 }

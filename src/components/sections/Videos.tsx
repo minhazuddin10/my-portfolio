@@ -17,7 +17,7 @@ export default function Videos() {
               aria-label={`Open YouTube channel ${ch.handle}`}
               className="glass glass-hover focus-ring group relative flex h-full items-center gap-5 overflow-hidden p-6 sm:p-8"
             >
-              <div aria-hidden className="absolute -right-12 -top-12 h-44 w-44 rounded-full bg-accent/20 blur-3xl transition duration-700 group-hover:scale-150" />
+              <div aria-hidden className="absolute -right-12 -top-12 h-44 w-44 glow-orb rounded-full transition duration-700 group-hover:scale-150" />
               <span className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-accent/40 bg-accent/10 text-3xl text-accent-soft shadow-glow transition group-hover:scale-110">
                 <FaYoutube aria-hidden />
               </span>

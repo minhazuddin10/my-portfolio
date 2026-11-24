@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
 import { FaAward } from "react-icons/fa";
 import { certifications } from "@/data/portfolio";
 import type { Certification } from "@/types";
@@ -86,7 +85,7 @@ export default function Certificates() {
         ))}
       </div>
 
-      <AnimatePresence>
+      
         {viewing && (
           <Modal title={viewing.title} onClose={() => setViewing(null)}>
             <h3 className="pr-10 font-display text-xl font-semibold text-white">{viewing.title}</h3>
@@ -99,7 +98,7 @@ export default function Certificates() {
             />
           </Modal>
         )}
-      </AnimatePresence>
+      
     </Section>
   );
 }

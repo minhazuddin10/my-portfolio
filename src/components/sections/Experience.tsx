@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
 import { experiences } from "@/data/portfolio";
 import type { Experience as ExperienceItem } from "@/types";
 import Section from "@/components/ui/Section";
@@ -37,7 +36,7 @@ export default function Experience() {
         ))}
       </ol>
 
-      <AnimatePresence>
+      
         {selected && (
           <DetailModal
             onClose={() => setSelected(null)}
@@ -50,7 +49,7 @@ export default function Experience() {
             }}
           />
         )}
-      </AnimatePresence>
+      
     </Section>
   );
 }

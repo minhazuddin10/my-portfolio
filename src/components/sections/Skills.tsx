@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
 import { devopsJourney, skillGroups } from "@/data/portfolio";
 import Section from "@/components/ui/Section";
 import Reveal from "@/components/ui/Reveal";
@@ -47,7 +46,7 @@ export default function Skills() {
         </TiltCard>
       </Reveal>
 
-      <AnimatePresence>
+      
         {open && (
           <DetailModal
             onClose={() => setOpen(false)}
@@ -58,7 +57,7 @@ export default function Skills() {
             }}
           />
         )}
-      </AnimatePresence>
+      
     </Section>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
 import { projects } from "@/data/portfolio";
 import type { Link, Project } from "@/types";
 import Section from "@/components/ui/Section";
@@ -38,14 +37,14 @@ export default function Projects() {
         ))}
       </div>
 
-      <AnimatePresence>
+      
         {selected && (
           <DetailModal
             onClose={() => setSelected(null)}
             detail={{ title: selected.title, meta: selected.period, paragraphs: [selected.description, ...selected.details], tags: selected.tags, links: linksOf(selected) }}
           />
         )}
-      </AnimatePresence>
+      
     </Section>
   );
 }

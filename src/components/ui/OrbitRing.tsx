@@ -9,14 +9,15 @@ interface OrbitRingProps {
   reverse?: boolean;
   /** Dashed outline, for a calm decorative ring. */
   dashed?: boolean;
+  className?: string;
 }
 
 /** A tilted ring with a glowing neutrino orbiting along it. Parent needs perspective. */
-export default function OrbitRing({ scale, tilt, rotate = 0, duration, reverse = false, dashed = false }: OrbitRingProps) {
+export default function OrbitRing({ scale, tilt, rotate = 0, duration, reverse = false, dashed = false, className = "" }: OrbitRingProps) {
   return (
     <div
       aria-hidden
-      className="pointer-events-none absolute"
+      className={`pointer-events-none absolute ${className}`}
       style={{
         width: `${scale}%`,
         aspectRatio: "1",

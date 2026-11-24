@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import { motion } from "framer-motion";
 import { HiX } from "react-icons/hi";
 
 interface ModalProps {
@@ -13,8 +12,7 @@ interface ModalProps {
 }
 
 /**
- * Accessible dialog. Mount it conditionally inside <AnimatePresence>
- * so the exit animation plays:  {item && <Modal ...>}
+ * Accessible dialog. Mount it conditionally:  {item && <Modal ...>}
  */
 export default function Modal({ title, onClose, children, size = "md" }: ModalProps) {
   useEffect(() => {
@@ -29,24 +27,15 @@ export default function Modal({ title, onClose, children, size = "md" }: ModalPr
   }, [onClose]);
 
   return (
-    <motion.div
-      className="fixed inset-0 z-[100] flex items-end justify-center sm:items-center sm:p-6"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-    >
-      <div className="absolute inset-0 bg-black/75 backdrop-blur-sm" onClick={onClose} aria-hidden />
-      <motion.div
+    <div className="fixed inset-0 z-[100] flex items-end justify-center sm:items-center sm:p-6">
+      <div className="absolute inset-0 bg-black/80" onClick={onClose} aria-hidden />
+      <div
         role="dialog"
         aria-modal="true"
         aria-label={title}
         className={`glass relative max-h-[92vh] w-full overflow-y-auto !rounded-b-none !bg-slate-950/90 overscroll-contain p-5 sm:!rounded-2xl sm:p-8 ${
           size === "lg" ? "max-w-4xl" : "max-w-2xl"
         }`}
-        initial={{ opacity: 0, y: 50, scale: 0.97 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: 40, scale: 0.97 }}
-        transition={{ type: "spring", stiffness: 260, damping: 28 }}
       >
         <button
           onClick={onClose}
@@ -56,7 +45,7 @@ export default function Modal({ title, onClose, children, size = "md" }: ModalPr
           <HiX />
         </button>
         {children}
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }

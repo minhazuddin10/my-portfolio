@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
 import { FaTrophy } from "react-icons/fa";
 import { achievements } from "@/data/portfolio";
 import type { Achievement } from "@/types";
@@ -32,14 +31,14 @@ export default function Achievements() {
         ))}
       </div>
 
-      <AnimatePresence>
+      
         {selected && (
           <DetailModal
             onClose={() => setSelected(null)}
             detail={{ title: selected.title, subtitle: selected.subtitle, paragraphs: selected.details, images: selected.images }}
           />
         )}
-      </AnimatePresence>
+      
     </Section>
   );
 }

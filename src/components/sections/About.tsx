@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
 import { about, aboutFacts, profile, stats } from "@/data/portfolio";
 import Section from "@/components/ui/Section";
 import Reveal from "@/components/ui/Reveal";
@@ -39,14 +38,14 @@ export default function About() {
         </div>
       </div>
 
-      <AnimatePresence>
+      
         {open && (
           <DetailModal
             onClose={() => setOpen(false)}
             detail={{ title: profile.name, subtitle: profile.headline, paragraphs: [...about, ...aboutFacts] }}
           />
         )}
-      </AnimatePresence>
+      
     </Section>
   );
 }

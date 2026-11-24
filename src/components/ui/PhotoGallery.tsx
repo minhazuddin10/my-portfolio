@@ -27,6 +27,7 @@ export default function PhotoGallery({ images, fit = "cover" }: PhotoGalleryProp
             src={img.src}
             alt={img.caption}
             loading="lazy"
+            decoding="async"
             onError={() => setFailed((f) => [...f, img.src])}
             className={`aspect-[4/3] w-full ${fit === "contain" ? "object-contain" : "object-cover"}`}
           />

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
 import { events } from "@/data/portfolio";
 import type { EventItem } from "@/types";
 import Section from "@/components/ui/Section";
@@ -31,7 +30,7 @@ export default function Events() {
         ))}
       </div>
 
-      <AnimatePresence>
+      
         {selected && (
           <DetailModal
             onClose={() => setSelected(null)}
@@ -44,7 +43,7 @@ export default function Events() {
             }}
           />
         )}
-      </AnimatePresence>
+      
     </Section>
   );
 }
