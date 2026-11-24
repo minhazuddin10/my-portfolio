@@ -14,7 +14,7 @@ export const profile = {
   headline: "Front-End Developer | Aspiring DevOps Engineer",
   location: "Bangladesh",
   openToWork: true,
-  email: "your-email@example.com", // TODO: replace with your real email
+  email: "minhazuddinrafi11@gmail.com",
   linkedin: "https://www.linkedin.com/in/minhaz-uddin-rafi/",
   github: "https://github.com/minhazuddin10",
   resumeUrl: "/Minhaz_Uddin_CV.pdf", // put the file in /public
@@ -29,6 +29,8 @@ export const company = {
   name: "NeutrinoByte",
   role: "Founder",
   url: "https://www.neutrinobyte.com/",
+  email: "info@neutrinobyte.com",
+  facebook: "https://www.facebook.com/neutrinobyte",
   description: "My own IT company. Visit the website to see what we build and how we work.",
 };
 
@@ -327,12 +329,14 @@ export const youtubeChannels: YoutubeChannel[] = [
   {
     name: "Noor of Dunya",
     handle: "@Noorofdunyaa",
+    owner: "personal",
     url: "https://www.youtube.com/@Noorofdunyaa",
     description: "My personal YouTube channel. Click to watch my videos.",
   },
   {
     name: "NeutrinoByte",
     handle: "@Neutrinobyte",
+    owner: "company",
     url: "https://www.youtube.com/@Neutrinobyte",
     description: "The official YouTube channel of NeutrinoByte, my IT company.",
   },

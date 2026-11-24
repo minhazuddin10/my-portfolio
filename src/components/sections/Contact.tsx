@@ -1,68 +1,88 @@
-"use client";
-
-import { useState } from "react";
-import { FaEnvelope, FaGithub, FaLinkedin, FaYoutube, FaGlobe } from "react-icons/fa";
+import type { IconType } from "react-icons";
+import { FaEnvelope, FaFacebook, FaGithub, FaGlobe, FaLinkedin, FaMapMarkerAlt, FaYoutube } from "react-icons/fa";
 import { company, profile, youtubeChannels } from "@/data/portfolio";
 import Section from "@/components/ui/Section";
 import Reveal from "@/components/ui/Reveal";
 
-interface FormState { name: string; email: string; message: string }
-const initialState: FormState = { name: "", email: "", message: "" };
+interface ContactLink {
+  icon: IconType;
+  label: string;
+  value: string;
+  href: string;
+}
 
-const fieldClass =
-  "w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:border-accent/60 focus:outline-none";
+interface ContactCardProps {
+  title: string;
+  subtitle: string;
+  mailTo: string;
+  links: ContactLink[];
+}
 
+/** One card = one identity (me / my company) with a main "Send email" button and a list of links. */
+function ContactCard({ title, subtitle, mailTo, links }: ContactCardProps) {
+  return (
+    <div className="glass flex h-full flex-col p-6 sm:p-8">
+      <h3 className="font-display text-xl font-semibold text-white sm:text-2xl">{title}</h3>
+      <p className="mt-1 text-sm text-slate-400">{subtitle}</p>
+
+      <a href={`mailto:${mailTo}`} className="btn-primary mt-6 w-full justify-start !px-4 !py-3 text-left">
+        <FaEnvelope aria-hidden className="shrink-0" />
+        <span className="min-w-0 truncate">{mailTo}</span>
+      </a>
+
+      <ul className="mt-4 space-y-3">
+        {links.map(({ icon: Icon, label, value, href }) => (
+          <li key={`${label}-${value}`}>
+            <a
+              href={href}
+              target="_blank"
+              rel="noreferrer"
+              className="focus-ring flex items-center gap-4 rounded-xl border border-white/10 bg-white/5 px-4 py-3 hover:border-accent/50"
+            >
+              <Icon className="shrink-0 text-xl text-accent-soft" aria-hidden />
+              <span className="min-w-0">
+                <span className="block text-xs text-slate-500">{label}</span>
+                <span className="block truncate text-sm font-medium text-slate-100">{value}</span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/** Two contact cards (personal + company). Edit the arrays below to add or remove links. */
 export default function Contact() {
-  const [form, setForm] = useState<FormState>(initialState);
+  const personalChannel = youtubeChannels.find((c) => c.owner === "personal");
+  const companyChannel = youtubeChannels.find((c) => c.owner === "company");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const personalLinks: ContactLink[] = [
+    { icon: FaLinkedin, label: "LinkedIn", value: "Connect with me", href: profile.linkedin },
+    { icon: FaGithub, label: "GitHub", value: "minhazuddin10", href: profile.github },
+    ...(personalChannel ? [{ icon: FaYoutube, label: "YouTube", value: personalChannel.handle, href: personalChannel.url }] : []),
+  ];
 
-  // Front-end only for now: opens the visitor's mail app with the message filled in.
-  // TODO (backend phase): POST to a route handler at app/api/contact/route.ts instead.
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const subject = encodeURIComponent(`Portfolio message from ${form.name}`);
-    const body = encodeURIComponent(`${form.message}\n\nFrom: ${form.name} (${form.email})`);
-    window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
-    setForm(initialState);
-  };
-
-  const links = [
-    { icon: FaEnvelope, label: profile.email, href: `mailto:${profile.email}` },
-    { icon: FaLinkedin, label: "LinkedIn", href: profile.linkedin },
-    { icon: FaGithub, label: "GitHub", href: profile.github },
-    ...youtubeChannels.map((ch) => ({ icon: FaYoutube, label: `YouTube ${ch.handle}`, href: ch.url })),
-    { icon: FaGlobe, label: company.name, href: company.url },
+  const companyLinks: ContactLink[] = [
+    { icon: FaGlobe, label: "Website", value: "neutrinobyte.com", href: company.url },
+    { icon: FaFacebook, label: "Facebook", value: "facebook.com/neutrinobyte", href: company.facebook },
+    ...(companyChannel ? [{ icon: FaYoutube, label: "YouTube", value: companyChannel.handle, href: companyChannel.url }] : []),
   ];
 
   return (
-    <Section id="contact" title="Contact" subtitle="Looking for a front-end or DevOps role, or a project with NeutrinoByte? Send me a message.">
-      <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
-        <Reveal from="left">
-          <form onSubmit={handleSubmit} className="glass space-y-4 p-6">
-            <div className="grid gap-4 sm:grid-cols-2">
-              <input name="name" value={form.name} onChange={handleChange} placeholder="Your name" required aria-label="Your name" className={fieldClass} />
-              <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="Your email" required aria-label="Your email" className={fieldClass} />
-            </div>
-            <textarea name="message" value={form.message} onChange={handleChange} placeholder="Your message" required rows={5} aria-label="Your message" className={fieldClass} />
-            <button type="submit" className="btn-primary w-full sm:w-auto">Send message</button>
-          </form>
+    <Section id="contact" title="Get in touch" subtitle="Hiring for a front-end or DevOps role, or want a project built by NeutrinoByte? Reach out.">
+      <div className="grid gap-6 md:grid-cols-2">
+        <Reveal>
+          <ContactCard title={profile.name} subtitle="For jobs, collaborations and research" mailTo={profile.email} links={personalLinks} />
         </Reveal>
-
-        <Reveal from="right">
-          <ul className="glass h-full space-y-4 p-6">
-            {links.map(({ icon: Icon, label, href }) => (
-              <li key={label}>
-                <a href={href} target={href.startsWith("mailto") ? undefined : "_blank"} rel="noreferrer" className="focus-ring flex items-center gap-3 text-slate-300 transition hover:text-accent-soft">
-                  <Icon className="text-accent-soft" aria-hidden /> {label}
-                </a>
-              </li>
-            ))}
-            <li className="pt-2 text-sm text-slate-500">Based in {profile.location}. Open to on-site, hybrid and remote roles.</li>
-          </ul>
+        <Reveal>
+          <ContactCard title={company.name} subtitle="For business enquiries and IT projects" mailTo={company.email} links={companyLinks} />
         </Reveal>
       </div>
+
+      <p className="mt-8 flex items-center justify-center gap-2 text-sm text-slate-500">
+        <FaMapMarkerAlt aria-hidden /> Based in {profile.location} · Open to on-site, hybrid and remote roles
+      </p>
     </Section>
   );
 }

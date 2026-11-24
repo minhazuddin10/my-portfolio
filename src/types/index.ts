@@ -111,6 +111,8 @@ export interface ResearchUpdate {
 export interface YoutubeChannel {
   name: string;
   handle: string;
+  /** Which Contact card this channel is listed under. */
+  owner: "personal" | "company";
   url: string;
   description: string;
 }
